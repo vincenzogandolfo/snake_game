@@ -53,28 +53,33 @@ class _HomePageState extends State<HomePage> {
               context: context,
               builder: (context) {
                 return AlertDialog(
-                  title: const Text('Game Over'),
-                  content: Column(
-                    children: [
-                      Text(
-                        'Punteggio: $currentScore',
-                      ),
-                      const TextField(
-                        decoration: InputDecoration(
-                          hintText: 'Inserisci Nome..',
+                  backgroundColor: Colors.grey.shade400,
+                  title: Center(
+                    child: Column(
+                      children: [
+                        const Text(
+                          'Game Over',
+                          style: TextStyle(
+                            color: Colors.black,
+                            fontWeight: FontWeight.bold,
+                            fontSize: 20,
+                          ),
                         ),
-                      ),
-                    ],
+                        const SizedBox(height: 20),
+                        Text(
+                          'Punteggio: $currentScore',
+                        ),
+                      ],
+                    ),
                   ),
                   actions: [
                     MaterialButton(
                       onPressed: () {
                         Navigator.pop(context);
-                        submitScore();
                         newGame();
                       },
                       color: Colors.deepPurpleAccent,
-                      child: const Text('Invia'),
+                      child: Center(child: const Text('New Game')),
                     ),
                   ],
                 );
@@ -189,9 +194,6 @@ class _HomePageState extends State<HomePage> {
     return false;
   }
 
-  // Funzione che invia il punteggio
-  void submitScore() {}
-
   // Funzione che fa Ricominciare il Gioco
   void newGame() {
     setState(() {
@@ -203,6 +205,7 @@ class _HomePageState extends State<HomePage> {
       foodPosition = 55;
       currentDirection = SnakeDirection.right;
       gameIsStarted = false;
+      currentScore = 0;
     });
   }
 
@@ -225,37 +228,25 @@ class _HomePageState extends State<HomePage> {
         children: [
           // Punteggio
           Expanded(
-            child: Row(
-              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-              children: [
-                // Punteggio Utente
-                Column(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: [
-                    const Text(
-                      'Punteggio',
-                      style: TextStyle(
-                        color: Colors.greenAccent,
-                        fontSize: 22,
-                        fontWeight: FontWeight.bold,
-                      ),
+            child: Center(
+              child: Column(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  const Text(
+                    'Punteggio',
+                    style: TextStyle(
+                      color: Colors.greenAccent,
+                      fontSize: 22,
+                      fontWeight: FontWeight.bold,
                     ),
-                    const SizedBox(height: 10),
-                    Text(
-                      currentScore.toString(),
-                      style: const TextStyle(fontSize: 36),
-                    ),
-                  ],
-                ),
-                const Text(
-                  'Classifica: ',
-                  style: TextStyle(
-                    color: Colors.blueAccent,
-                    fontSize: 18,
-                    fontWeight: FontWeight.bold,
                   ),
-                ),
-              ],
+                  const SizedBox(height: 10),
+                  Text(
+                    currentScore.toString(),
+                    style: const TextStyle(fontSize: 36),
+                  ),
+                ],
+              ),
             ),
           ),
           // Schermata di Gioco
