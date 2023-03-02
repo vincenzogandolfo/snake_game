@@ -79,7 +79,9 @@ class _HomePageState extends State<HomePage> {
                         newGame();
                       },
                       color: Colors.deepPurpleAccent,
-                      child: Center(child: const Text('New Game')),
+                      child: const Center(
+                        child: Text('New Game'),
+                      ),
                     ),
                   ],
                 );
